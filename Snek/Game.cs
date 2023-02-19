@@ -122,6 +122,12 @@ namespace Snek
                         case BoardTiles.SNEKHEAD_P1:
                             Console.Write("# ");
                             break;
+                        case BoardTiles.SNEKBODY_P1:
+                            Console.Write("§ ");
+                            break;
+                        case BoardTiles.WALL:
+                            Console.Write("▒ ");
+                            break;
                     }
                 }Console.SetCursorPosition(Console.GetCursorPosition().Left-1, Console.GetCursorPosition().Top); Console.CursorVisible=false;
                 Console.WriteLine("|");
@@ -150,7 +156,9 @@ namespace Snek
 
         public void Wait()
         {
-            int TimeOut = 1000 - 25 * Speed * Difficulty;
+
+            Speed = Score + 1;
+            int TimeOut = 1000 - 25 *Score/2 *Speed * Difficulty;
             if (TimeOut < 0)
             {
                 TimeOut = 0;

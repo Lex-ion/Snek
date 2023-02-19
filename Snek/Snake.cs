@@ -36,24 +36,37 @@ namespace Snek
 
             CurrentPosX = currentPosX;
             CurrentPosY = currentPosY;
+            if (Board.boardPrimary[currentPosY, currentPosX] != BoardTiles.FREESPACE)
+            {
+                if (Board.boardPrimary[currentPosY, currentPosX] != BoardTiles.FOOD)
+                    currentPosX *= 100000000;
+            }
+
+            
 
              if (currentPosX == Food.FoodPos[1] && currentPosY == Food.FoodPos[0])
             {
                 Game.Score++;
+                
                 Game.CreateFoodPrimary = true;
                 TTLBodies[tempPosY, tempPosX] = Game.Score;
             }
+             else
+            {
 
+                TTLBodies[tempPosY, currentPosX] = Game.Score;
+            }
 
-            Board.boardPrimary[tempPosY, tempPosX] = BoardTiles.FREESPACE;
-            Board.boardPrimary[currentPosY, currentPosX] = BoardTiles.SNEKHEAD_P1;
+            
 
             for (int i = 0; i < Game.Height; i++)
             {
                 for (int j = 0; j < Game.Width; j++)
                 {
 
-                    if (TTLBodies[i, j] == 1)
+                    if (TTLBodies[i, j] <= 1
+                        && i != Food.FoodPos[0]
+                        && j != Food.FoodPos[1])
                     {
                         Board.boardPrimary[i, j] = BoardTiles.FREESPACE;
                     }
@@ -66,12 +79,12 @@ namespace Snek
                 }
             }
 
-            TTLBodies[tempPosY,tempPosX] = Game.Score;
+           
 
+            Board.boardPrimary[currentPosY, currentPosX] = BoardTiles.SNEKHEAD_P1;
         }
 
 
-        
 
 
 

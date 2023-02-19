@@ -3,9 +3,11 @@
     public enum BoardTiles
     {
         FREESPACE=0,
-        SNEKHEAD_P1=1,
-        SNEKBODY_P1=2,
-        FOOD = 3,
+        FOOD = 1,
+        SNEKHEAD_P1=2,
+        SNEKBODY_P1=3,
+        WALL=4
+        
         
 
     }
